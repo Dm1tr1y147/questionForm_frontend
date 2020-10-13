@@ -6,3 +6,5 @@ A frontend for QuestionForm application.
 
 - React
 - Graphql
+- Apollo Client
+- React Router
