@@ -2,7 +2,7 @@ import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 
 import { setContext } from '@apollo/client/link/context'
 
-import { LOGIN } from './queries'
+export * from './defs'
 
 const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL || process.env.REACT_APP_GRAPHQL_URL || undefined
@@ -28,4 +28,3 @@ const client = new ApolloClient({
 })
 
 export default client
-export { LOGIN }

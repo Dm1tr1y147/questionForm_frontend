@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { ContextType, initialUser, UserType } from './context'
 
 export const useUser = (): ContextType => {
@@ -9,4 +10,8 @@ export const useUser = (): ContextType => {
   }, [])
 
   return { user, setUser }
+}
+
+export const useURLQuery = () => {
+  return new URLSearchParams(useLocation().search)
 }

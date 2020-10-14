@@ -17,4 +17,14 @@ const FORM = gql`
   }
 `
 
-export { LOGIN, FORM }
+const USER = gql`
+  query User {
+    user {
+      email
+      id
+      name
+    }
+  }
+`
+
+export { LOGIN, FORM, USER }
