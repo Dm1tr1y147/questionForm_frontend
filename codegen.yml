@@ -1,0 +1,13 @@
+overwrite: true
+schema: 'src/apollo/typeDefs.gql'
+documents: null
+generates:
+  src/apollo/typeDefs.gen.ts:
+    config:
+      useIndexSignature: true
+      wrapFieldDefinitions: true
+      enumsAsTypes: true
+      declarationKind: 'interface'
+
+    plugins:
+      - 'typescript'

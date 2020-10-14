@@ -1,0 +1,84 @@
+type Query {
+  form(id: Int!): Form
+  forms: [Form!]!
+  user(id: Int): User
+}
+
+type Mutation {
+  createForm(title: String!, questions: String!): serverAnswer
+  formSubmit(formId: Int!, answers: String!): serverAnswer
+  login(email: String!): serverAnswer
+  register(name: String!, email: String!): serverAnswer
+}
+
+type Form {
+  author: User
+  dateCreated: String!
+  id: Int!
+  questions: [Question!]!
+  submissions: [FormSubmission!]
+  title: String!
+}
+
+interface Question {
+  number: Int!
+  title: String!
+}
+
+type ChoisesQuestion implements Question {
+  number: Int!
+  title: String!
+  type: ChoiseType!
+  variants: [Variant!]!
+}
+
+type Variant {
+  text: String!
+}
+
+type InputQuestion implements Question {
+  number: Int!
+  title: String!
+}
+
+type FormSubmission {
+  answers: [Answer!]!
+  date: String!
+  id: Int!
+}
+
+interface Answer {
+  type: AnswerType!
+}
+
+type InputAnswer implements Answer {
+  type: AnswerType!
+  userInput: String
+}
+
+type ChoiseAnswer implements Answer {
+  type: AnswerType!
+  userChoise: Int!
+}
+
+enum ChoiseType {
+  CHECK
+  CHOOSE
+  SELECT
+}
+
+enum AnswerType {
+  CHOISE
+  INPUT
+}
+
+type User {
+  email: String!
+  forms: [Form!]
+  id: Int!
+  name: String!
+}
+
+type serverAnswer {
+  success: Boolean!
+}

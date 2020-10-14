@@ -6,35 +6,9 @@ import client from '../apollo'
 import Context from '../context'
 import { useUser } from '../hooks'
 import Authorize from './Authorize'
+import DoForm from './DoForm'
 import Login from './Login'
 import UserPage from './UserPage'
-
-// const TestComponent: React.FC = () => {
-//   const { loading, error, data } = useQuery(FORM, {
-//     variables: {
-//       id: 1
-//     }
-//   })
-
-//   const { user } = useContext(Context)
-
-//   const [doLogin] = useMutation(LOGIN)
-
-//   if (loading) return <p>Loading...</p>
-//   if (error) return <p>Error :(</p>
-
-//   return (
-//     <div>
-//       <button
-//         onClick={() => doLogin({ variables: { email: 'test@test.test' } })}
-//       >
-//         Click!
-//       </button>
-//       {user.id}
-//       {data.form.id}
-//     </div>
-//   )
-// }
 
 const App: React.FC = () => {
   const userContext = useUser()
@@ -48,6 +22,7 @@ const App: React.FC = () => {
               <Route path="/login" component={Login} />
               <Route path="/authorize" component={Authorize} />
               <Route path="/user" component={UserPage} />
+              <Route path="/form/:id" component={DoForm} />
             </Switch>
           </Router>
         </Context.Provider>

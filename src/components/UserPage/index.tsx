@@ -8,15 +8,15 @@ const UserPage: React.FC = () => {
 
   if (error) return <p>{error.message}</p>
 
-  console.log(Object.entries(data.user))
+  const { name, email, id } = data.user
 
-  const user = Object.entries(data.user).map((el, index) => (
-    <li key={index}>
-      {el[0]}: {el[1]}
-    </li>
-  ))
-
-  return <ul>{user}</ul>
+  return (
+    <div>
+      <h1>Username: {name}</h1>
+      <h3>Email: {email}</h3>
+      <p>User ID: {id}</p>
+    </div>
+  )
 }
 
 export default UserPage
