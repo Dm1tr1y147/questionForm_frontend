@@ -55,4 +55,12 @@ const FORMSUBMIT = gql`
   }
 `
 
-export { LOGIN, FORM, USER, FORMSUBMIT }
+const CREATEFORM = gql`
+  mutation CreateForm($title: String!, $questions: String!) {
+    createForm(title: $title, questions: $questions) {
+      success
+    }
+  }
+`
+
+export { LOGIN, FORM, USER, FORMSUBMIT, CREATEFORM }
