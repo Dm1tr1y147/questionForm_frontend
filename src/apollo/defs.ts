@@ -43,6 +43,10 @@ const USER = gql`
       email
       id
       name
+      forms {
+        id
+        title
+      }
     }
   }
 `
