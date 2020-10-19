@@ -32,6 +32,22 @@ const FORM = gql`
           title
         }
       }
+      submissions {
+        answers {
+          ... on InputAnswer {
+            type
+            userInput
+          }
+          ... on ChoiseAnswer {
+            type
+            userChoise
+          }
+        }
+        date
+        user {
+          name
+        }
+      }
       title
     }
   }
@@ -46,6 +62,22 @@ const USER = gql`
       forms {
         id
         title
+        submissions {
+          answers {
+            ... on InputAnswer {
+              type
+              userInput
+            }
+            ... on ChoiseAnswer {
+              type
+              userChoise
+            }
+          }
+          date
+          user {
+            name
+          }
+        }
       }
     }
   }
