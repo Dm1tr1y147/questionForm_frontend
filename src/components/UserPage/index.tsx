@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client'
 import React from 'react'
 import { USER } from '../../apollo'
-import { User } from '../../apollo/typeDefs.gen'
+import { QueryUserArgs, User } from '../../apollo/typeDefs.gen'
 
-interface UserQuery {
+interface IUserQuery {
   user: User
 }
 
 const UserPage: React.FC = () => {
-  const { data, error, loading } = useQuery<UserQuery>(USER)
+  const { data, error, loading } = useQuery<IUserQuery, QueryUserArgs>(USER)
   if (loading) return <p>Loading...</p>
 
   if (error) return <p>{error.message}</p>

@@ -99,4 +99,12 @@ const CREATEFORM = gql`
   }
 `
 
-export { LOGIN, FORM, USER, FORMSUBMIT, CREATEFORM }
+const REGISTER = gql`
+  mutation Register($email: String!, $name: String!) {
+    register(email: $email, name: $name) {
+      success
+    }
+  }
+`
+
+export { LOGIN, FORM, USER, FORMSUBMIT, CREATEFORM, REGISTER }

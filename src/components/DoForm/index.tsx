@@ -8,7 +8,9 @@ import {
   Form,
   InputAnswer,
   InputQuestion,
+  MutationFormSubmitArgs,
   QueryFormArgs,
+  ServerAnswer,
 } from '../../apollo/typeDefs.gen'
 import Lists from './Lists'
 
@@ -16,12 +18,19 @@ interface IFormQuery {
   form: Form
 }
 
+interface IFormSubmitMutation {
+  formSubmit: ServerAnswer
+}
+
 const DoForm: React.FC = () => {
   const { id: idString } = useParams<{ id: string }>()
 
   const id = parseInt(idString)
 
-  const { data, error, loading } = useQuery<IFormQuery, QueryFormArgs>(FORM, {
+  const { data, error, loading, refetch: refetchForm } = useQuery<
+    IFormQuery,
+    QueryFormArgs
+  >(FORM, {
     variables: { id },
     skip: isNaN(id),
   })
@@ -29,7 +38,7 @@ const DoForm: React.FC = () => {
   const [
     doFormSubmit,
     { error: submitError, data: submitData, loading: submitLoading },
-  ] = useMutation(FORMSUBMIT)
+  ] = useMutation<IFormSubmitMutation, MutationFormSubmitArgs>(FORMSUBMIT)
 
   const [answers, setAnswer] = useState<(InputAnswer | ChoiseAnswer)[]>([])
 
@@ -57,8 +66,6 @@ const DoForm: React.FC = () => {
     }
   }, [data])
 
-  useEffect(() => console.log(answers), [answers])
-
   if (isNaN(id)) return <Redirect to="/" />
 
   if (loading) return <div>Loading...</div>
@@ -66,24 +73,24 @@ const DoForm: React.FC = () => {
 
   const { form } = data!
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    console.log('Submited form:', answers)
 
     answers.forEach((el) => {
       delete el.__typename
     })
 
-    const submitAnswers = JSON.stringify(answers)
+    try {
+      const submitAnswers = JSON.stringify(answers)
 
-    console.log('Filtered answers: ', submitAnswers)
-
-    doFormSubmit({
-      variables: {
-        formId: id,
-        answers: submitAnswers,
-      },
-    })
+      await doFormSubmit({
+        variables: {
+          formId: id,
+          answers: submitAnswers,
+        },
+      })
+      await refetchForm()
+    } catch (err) {}
   }
 
   const answerChange = (num: number) => {
@@ -108,39 +115,43 @@ const DoForm: React.FC = () => {
       <p>{form.dateCreated}</p>
       <h3>{form.author?.name || 'No author'}</h3>
       {form.submissions ? (
-        <div>
-          <h1>Submission{form.submissions.length > 1 && 's'}:</h1>
-          <ul>
-            {form.submissions.map((submission, submissionIndex) => (
-              <li key={submissionIndex}>
-                <h2>
-                  User:{' '}
-                  {submission.user ? submission.user.name : 'No submitter'}
-                </h2>
-                <ul>
-                  {submission.answers.map(
-                    (answer: InputAnswer | ChoiseAnswer, answerIndex) => (
-                      <li key={answerIndex}>
-                        <h3>{form.questions[answerIndex].title}</h3>
-                        {answer.__typename === 'ChoiseAnswer' && (
-                          <h4>
-                            {
-                              (form.questions[answerIndex] as ChoisesQuestion)
-                                .variants[answer.userChoise].text
-                            }
-                          </h4>
-                        )}
-                        {answer.__typename === 'InputAnswer' && (
-                          <h4>{answer.userInput}</h4>
-                        )}
-                      </li>
-                    )
-                  )}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
+        form.submissions.length > 0 ? (
+          <div>
+            <h1>Submission{form.submissions.length > 1 && 's'}:</h1>
+            <ul>
+              {form.submissions.map((submission, submissionIndex) => (
+                <li key={submissionIndex}>
+                  <h2>
+                    User:{' '}
+                    {submission.user ? submission.user.name : 'No submitter'}
+                  </h2>
+                  <ul>
+                    {submission.answers.map(
+                      (answer: InputAnswer | ChoiseAnswer, answerIndex) => (
+                        <li key={answerIndex}>
+                          <h3>{form.questions[answerIndex].title}</h3>
+                          {answer.__typename === 'ChoiseAnswer' && (
+                            <h4>
+                              {
+                                (form.questions[answerIndex] as ChoisesQuestion)
+                                  .variants[answer.userChoise].text
+                              }
+                            </h4>
+                          )}
+                          {answer.__typename === 'InputAnswer' && (
+                            <h4>{answer.userInput}</h4>
+                          )}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          'No submissions yet'
+        )
       ) : (
         <form onSubmit={handleSubmit}>
           <ul>

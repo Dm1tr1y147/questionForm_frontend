@@ -3,11 +3,19 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import { LOGIN } from '../../apollo'
+import { MutationLoginArgs, ServerAnswer } from '../../apollo/typeDefs.gen'
+
+interface ILoginMutation {
+  login: ServerAnswer
+}
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('')
 
-  const [doLogin, { error, data }] = useMutation(LOGIN)
+  const [doLogin, { error, data }] = useMutation<
+    ILoginMutation,
+    MutationLoginArgs
+  >(LOGIN)
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault()

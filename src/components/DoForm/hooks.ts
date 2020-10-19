@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { ChoiseAnswer, InputAnswer } from '../../apollo/typeDefs.gen'
 
 export const useForm = (initialValue?: (InputAnswer | ChoiseAnswer)[]) => {
-  console.log(initialValue, 'Inside hook')
-
   const [answers, setAnswer] = useState<(InputAnswer | ChoiseAnswer)[]>(
     initialValue || []
   )

@@ -37,11 +37,17 @@ const CreateForm: React.FC = () => {
       handleAnswerVariantChange,
       addVariant,
     },
+    resetForm,
   ] = useFormCreator<QuestionTypes>(formatQuestionsToSubmit)
 
   return (
     <>
-      <form onSubmit={formSubmit}>
+      <form
+        onSubmit={(e) => {
+          resetForm()
+          formSubmit(e)
+        }}
+      >
         <label>
           Title:
           <input
@@ -49,6 +55,7 @@ const CreateForm: React.FC = () => {
             name="Title"
             value={form.title}
             onChange={handleFormTitleChange}
+            required
           />
         </label>
 
@@ -75,6 +82,7 @@ const CreateForm: React.FC = () => {
               <li key={questionIndex}>
                 <p>{quesstion.type} question:</p>
                 <input
+                  required
                   type="text"
                   name="questionTitle"
                   placeholder="Title"
@@ -89,6 +97,7 @@ const CreateForm: React.FC = () => {
                       {quesstion.variants.map((variant, variantIndex) => (
                         <li key={variantIndex}>
                           <input
+                            required
                             placeholder="Variant"
                             type="text"
                             value={variant}

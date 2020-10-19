@@ -57,13 +57,16 @@ type UseFormCreatorHookTurple<T extends string> = [
     handleQuestionTitleChange: HandleQuestionTitleChangeType
     handleAnswerVariantChange: HandleAnswerVariantChangeType
     addVariant: AddVariantType
-  }
+  },
+  () => void
 ]
+
+const initialState = { title: '', questions: [] }
 
 export const useFormCreator = <T extends string>(
   formatQuestionsToSubmit: FormatQuestionsToSubmitType
 ): UseFormCreatorHookTurple<T> => {
-  const [form, setState] = useState<Form<T>>({ title: '', questions: [] })
+  const [form, setState] = useState<Form<T>>(initialState)
 
   const [
     doFormCreation,
@@ -75,13 +78,11 @@ export const useFormCreator = <T extends string>(
     },
   })
 
-  const formSubmit: FormSubmitType = (e) => {
+  const formSubmit: FormSubmitType = async (e) => {
     e.preventDefault()
-    console.log({
-      title: form.title,
-      questions: formatQuestionsToSubmit<T>(form.questions),
-    })
-    doFormCreation()
+    try {
+      await doFormCreation()
+    } catch (err) {}
   }
 
   const handleFormTitleChange: HandleFormTitleChangeType = (e) => {
@@ -92,7 +93,7 @@ export const useFormCreator = <T extends string>(
   const createQuestion: CreateQuestionType<T> = (type) => {
     setState(({ title, questions }) => ({
       title,
-      questions: questions.concat({ title: '', type, variants: [] }),
+      questions: questions.concat({ title: '', type, variants: [''] }),
     }))
   }
 
@@ -131,7 +132,6 @@ export const useFormCreator = <T extends string>(
   }
 
   const addVariant: AddVariantType = (questionNumber) => {
-    console.log()
     setState(({ title, questions }) => ({
       title,
       questions: questions.map((el, index) => ({
@@ -140,6 +140,10 @@ export const useFormCreator = <T extends string>(
           index === questionNumber ? el.variants.concat('') : el.variants,
       })),
     }))
+  }
+
+  const resetForm = () => {
+    setState(initialState)
   }
 
   return [
@@ -152,5 +156,6 @@ export const useFormCreator = <T extends string>(
       handleAnswerVariantChange,
       addVariant,
     },
+    resetForm,
   ]
 }
