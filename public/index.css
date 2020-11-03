@@ -1,0 +1,28 @@
+:root {
+  --backgroundColor: rgba(54, 54, 69, 0.05);
+  --containerColor: rgb(54, 54, 69);
+  --accentColor: rgb(109, 245, 119);
+  --accentShadowColor: rgba(109, 245, 119, 0.16);
+
+  --onAccentFontColor: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--backgroundColor);
+  min-height: 100vh;
+  color: var(--containerColor);
+}
+
+input {
+  color: var(--containerColor);
+}
+
+#root {
+  height: 100vh;
+}

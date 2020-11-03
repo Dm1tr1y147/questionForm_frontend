@@ -8,7 +8,9 @@ import { useUser } from '../hooks'
 import Authorize from './Authorize'
 import CreateForm from './CreateForm'
 import DoForm from './DoForm'
+import Home from './Home'
 import Login from './Login'
+import Navbar from './Navbar'
 import Register from './Register'
 import UserPage from './UserPage'
 
@@ -20,6 +22,7 @@ const App: React.FC = () => {
       <ApolloProvider client={client}>
         <Context.Provider value={userContext}>
           <Router>
+            <Navbar />
             <Switch>
               <Route path="/login" component={Login} />
               <Route path="/authorize" component={Authorize} />
@@ -27,6 +30,7 @@ const App: React.FC = () => {
               <Route path="/form/:id" component={DoForm} />
               <Route path="/create" component={CreateForm} />
               <Route path="/register" component={Register} />
+              <Route exact path="/" component={Home} />
             </Switch>
           </Router>
         </Context.Provider>

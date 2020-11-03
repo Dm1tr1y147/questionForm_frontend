@@ -1,0 +1,11 @@
+.card {
+  display: block;
+  background-color: var(--accentColor);
+  width: 35vw;
+  padding: 1.5vh;
+  white-space: nowrap;
+  border-radius: 0.75vh;
+  box-shadow: 0 1px 6px 0 var(--accentShadowColor);
+  text-decoration: none;
+  color: var(--onAccentFontColor);
+}

@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  width: 100vw;
+  height: 4rem;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--containerColor);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.logo {
+  display: block;
+  height: 2.7rem;
+  width: 2.7rem;
+}
