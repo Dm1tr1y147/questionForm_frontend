@@ -44,7 +44,7 @@ const DoForm: React.FC = () => {
 
   const getInitialState = (data: IFormQuery) => {
     if (data && data.form) {
-      return data.form.questions.flatMap<InputAnswer | ChoiseAnswer>(
+      return data.form.questions!.flatMap<InputAnswer | ChoiseAnswer>(
         (el: InputQuestion | ChoisesQuestion) => {
           if (el.__typename === 'ChoisesQuestion')
             return [
@@ -129,12 +129,15 @@ const DoForm: React.FC = () => {
                     {submission.answers.map(
                       (answer: InputAnswer | ChoiseAnswer, answerIndex) => (
                         <li key={answerIndex}>
-                          <h3>{form.questions[answerIndex].title}</h3>
+                          <h3>{form.questions![answerIndex].title}</h3>
                           {answer.__typename === 'ChoiseAnswer' && (
                             <h4>
                               {
-                                (form.questions[answerIndex] as ChoisesQuestion)
-                                  .variants[answer.userChoise].text
+                                (form.questions![
+                                  answerIndex
+                                ] as ChoisesQuestion).variants[
+                                  answer.userChoise
+                                ].text
                               }
                             </h4>
                           )}
@@ -155,7 +158,7 @@ const DoForm: React.FC = () => {
       ) : (
         <form onSubmit={handleSubmit}>
           <ul>
-            {form.questions.map((el: InputQuestion | ChoisesQuestion) => {
+            {form.questions!.map((el: InputQuestion | ChoisesQuestion) => {
               if (el.__typename === 'InputQuestion')
                 return (
                   <li key={el.number}>

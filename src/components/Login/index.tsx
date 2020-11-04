@@ -49,6 +49,7 @@ const Login: React.FC = () => {
             <>
               <h1 className={styles.header}>Login</h1>
               <input
+                required
                 className={styles.input}
                 name="email"
                 id="email"

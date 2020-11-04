@@ -57,26 +57,19 @@ const USER = gql`
   query User {
     user {
       email
-      id
-      name
       forms {
         id
-        title
         submissions {
-          answers {
-            ... on InputAnswer {
-              type
-              userInput
-            }
-            ... on ChoiseAnswer {
-              type
-              userChoise
-            }
-          }
-          date
-          user {
-            name
-          }
+          id
+        }
+        title
+      }
+      name
+      formSubmissions {
+        id
+        form {
+          title
+          id
         }
       }
     }

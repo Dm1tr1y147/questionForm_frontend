@@ -1,12 +1,89 @@
 .container {
   display: grid;
-  height: calc(100vh - 4rem);
-  grid-template-columns: 4fr 3fr;
+  min-height: calc(100vh - 4rem);
+  grid-template-columns: 5fr 3fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'left user'
+    'left right';
+  padding: 2.3rem;
 }
 
 .leftPad {
   display: flex;
+  grid-area: left;
   flex-direction: column;
   align-items: center;
+  gap: 2.3rem;
+  padding: 0 2.3rem;
+}
+
+.leftPad > * {
+  width: 100%;
+}
+
+.cardList {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  overflow-y: auto;
+}
+
+.rightPad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.3rem;
+  padding-top: 2.3rem;
+  grid-area: right;
+}
+
+.rightPad > * {
+  width: 30vw;
+}
+
+.userPad {
+  grid-area: user;
+  padding: 0 2.3rem;
+}
+
+.userCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #ffffff;
+  padding: 2.3rem;
+  padding-bottom: 1.6rem;
+  border-radius: 20px;
+}
+
+.userPic {
+  border-radius: 20px;
+  width: 100%;
+}
+
+@media (orientation: portrait) {
+  .container {
+    grid-template-columns: auto;
+    grid-template-areas: 'user' 'left' 'right';
+    gap: 2.3rem;
+  }
+
+  .userPad {
+    padding: 0;
+  }
+
+  .leftPad {
+    padding: 0;
+  }
+
+  .rightPad {
+    padding-top: 0;
+  }
+
+  .rightPad > * {
+    width: 100%;
+  }
 }

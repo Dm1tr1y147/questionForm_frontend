@@ -42,12 +42,14 @@ const Register: React.FC = () => {
         <form className={styles.form} onSubmit={handleSubmit}>
           <h1 className={styles.header}>Register</h1>
           <input
+            required
             className={styles.input}
             type="email"
             name="email"
             placeholder="email"
           />
           <input
+            required
             className={styles.input}
             type="text"
             name="name"
