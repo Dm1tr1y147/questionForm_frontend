@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 4rem);
+}
+
+.header {
+  padding: 2.3rem;
+  display: grid;
+  grid-template:
+    'title title' auto
+    'date author' auto / auto auto;
+}
+
+.formTitle {
+  text-align: center;
+  grid-area: title;
+}
+
+.dateCreated {
+  grid-area: date;
+}
+
+.author {
+  text-align: right;
+  grid-area: author;
+}
+
+.main {
+  background-color: #ffffff;
+  position: relative;
+  margin-top: 2.3rem;
+  flex-grow: 1;
+  padding: 2.3rem;
+  padding-top: 0;
+}
+
+.mainTop {
+  height: 2.3rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 100%;
+  background-color: #ffffff;
+  position: absolute;
+  top: -2.3rem;
+  left: 0rem;
+  width: 100vw;
+}

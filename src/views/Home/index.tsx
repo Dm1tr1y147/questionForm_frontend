@@ -1,12 +1,12 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { generateFromString } from 'generate-avatar'
+import { Redirect } from 'react-router-dom'
 
-import Card from '../Card'
+import Card from '../../components/Card'
 import { USER } from '../../apollo'
 import { QueryUserArgs, User } from '../../apollo/typeDefs.gen'
 import styles from './main.module.css'
-import { Redirect } from 'react-router-dom'
 
 interface IUserQuery {
   user: User

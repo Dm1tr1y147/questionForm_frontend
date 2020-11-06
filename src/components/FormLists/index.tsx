@@ -1,13 +1,13 @@
 import React from 'react'
 
-interface IProps {
+interface IListsProps {
   variants: { text: string }[]
   name: string
   type: 'CHECK' | 'CHOOSE'
   onChange: (num: number) => void
 }
 
-const Lists: React.FC<IProps> = ({ variants, name, type, onChange }) => {
+const Lists: React.FC<IListsProps> = ({ variants, name, type, onChange }) => {
   const inputType =
     (type === 'CHECK' && 'check') || (type === 'CHOOSE' && 'radio') || undefined
 
