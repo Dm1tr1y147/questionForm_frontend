@@ -1,0 +1,56 @@
+.question {
+  list-style: none;
+  padding-bottom: 1rem;
+}
+
+.questionTitle {
+  padding-bottom: 0.5rem;
+  display: block;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.textInput {
+  height: 2.3rem;
+  border-radius: 100vh;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0 0.7rem;
+  width: 100%;
+  border-bottom: 0.15rem var(--containerColor) solid;
+  transition: border 0.1s;
+}
+
+.textInput:focus {
+  border-bottom-width: 0rem;
+  border-top: 0.15rem var(--containerColor) solid;
+}
+
+.select {
+  /* -webkit-appearance: none; */
+  /* -moz-appearance: none; */
+  /* appearance: none; */
+  padding: 0.5rem;
+  background: var(--accentColor);
+  border-radius: 20px;
+  color: #ffffff;
+}
+
+.button {
+  height: 2.3rem;
+  border-radius: 100vh;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0 0.7rem;
+  width: 100%;
+  cursor: pointer;
+  background-color: var(--accentColor);
+  color: var(--onAccentFontColor);
+  box-shadow: 0 1px 6px 0 var(--accentShadowColor);
+}
+
+.button:active {
+  box-shadow: none;
+}

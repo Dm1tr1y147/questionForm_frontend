@@ -1,19 +1,22 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { generateFromString } from 'generate-avatar'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 
 import Card from '../../components/Card'
 import { USER } from '../../apollo'
-import { QueryUserArgs, User } from '../../apollo/typeDefs.gen'
+import { QueryUserArgs } from '../../apollo/typeDefs.gen'
 import styles from './main.module.css'
-
-interface IUserQuery {
-  user: User
-}
+import { IUserQuery } from '../../types'
+import { logOut } from './utils'
 
 const Home: React.FC = () => {
-  let { data, error, loading } = useQuery<IUserQuery, QueryUserArgs>(USER)
+  let { data, error, loading, refetch } = useQuery<IUserQuery, QueryUserArgs>(
+    USER
+  )
+
+  const history = useHistory()
+
   if (loading) return <p>Loading...</p>
 
   if (error?.message === 'Authorization required')
@@ -35,6 +38,12 @@ const Home: React.FC = () => {
             alt="Userpic"
           />
           <h1>{user.name}</h1>
+          <button
+            className={styles.button}
+            onClick={() => logOut(refetch, history)}
+          >
+            Log out
+          </button>
         </div>
       </div>
 

@@ -9,7 +9,7 @@ import styles from './main.module.css'
 import QuestionsForm from '../../components/QuestionsForm'
 import { IFormQuery } from '../../types'
 import { useId } from './hooks'
-import { getDateCreated } from './utils'
+import { getDateCreated } from '../../utils'
 
 const DoForm: React.FC = () => {
   const id = useId()
@@ -44,7 +44,7 @@ const DoForm: React.FC = () => {
         <div className={styles.mainTop}></div>
         {form.submissions ? (
           <>
-            <h1>Submissions</h1>
+            <h1 className={styles.mainHeader}>Submissions</h1>
             <SubmissionList
               submissions={form.submissions}
               questions={form.questions!}
@@ -52,7 +52,7 @@ const DoForm: React.FC = () => {
           </>
         ) : (
           <>
-            <h1>Questions</h1>
+            <h1 className={styles.mainHeader}>Questions</h1>
             <QuestionsForm
               formId={id}
               questions={data!.form.questions!}

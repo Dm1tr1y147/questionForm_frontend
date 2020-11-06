@@ -7,6 +7,7 @@ import Lists from '../FormLists'
 import { useForm } from './hooks'
 import { QuestionT } from '../../types'
 import { RefetchQuestionsFT, IFormSubmitMutation } from './types'
+import styles from './main.module.css'
 
 interface IQuestionsFormProps {
   formId: number
@@ -62,52 +63,63 @@ const QuestionsForm: React.FC<IQuestionsFormProps> = ({
           {questions.map((el: QuestionT) => {
             if (el.__typename === 'InputQuestion')
               return (
-                <li key={el.number}>
-                  <label>
+                <li key={el.number} className={styles.question}>
+                  <label
+                    className={styles.questionTitle}
+                    htmlFor={el.title.replace(' ', '_')}
+                  >
                     {el.title}
-                    <input
-                      onChange={(e) =>
-                        changeAnswer(el.number)(e.currentTarget.value)
-                      }
-                      type="text"
-                    />
                   </label>
+                  <input
+                    className={styles.textInput}
+                    placeholder="Input"
+                    name={el.title.replace(' ', '_')}
+                    onChange={(e) =>
+                      changeAnswer(el.number)(e.currentTarget.value)
+                    }
+                    type="text"
+                  />
                 </li>
               )
             if (el.__typename === 'ChoisesQuestion')
               return (
-                <li key={el.number}>
-                  <label>
+                <li key={el.number} className={styles.question}>
+                  <label className={styles.questionTitle} htmlFor={el.title}>
                     {el.title}
-                    {el.type === 'SELECT' ? (
-                      <select
-                        onChange={(e) => {
-                          const selectValue = el.variants.findIndex(
-                            (val) => val.text === e.currentTarget.value
-                          )
-                          changeAnswer(el.number)(selectValue)
-                        }}
-                        name={el.title}
-                      >
-                        {el.variants.map((option, index) => (
-                          <option key={index}>{option.text}</option>
-                        ))}
-                      </select>
-                    ) : (
-                      <Lists
-                        variants={el.variants}
-                        onChange={changeAnswer(el.number)}
-                        name={el.title}
-                        type={el.type}
-                      />
-                    )}
                   </label>
+                  {el.type === 'SELECT' ? (
+                    <select
+                      className={styles.select}
+                      onChange={(e) => {
+                        const selectValue = el.variants.findIndex(
+                          (val) => val.text === e.currentTarget.value
+                        )
+                        changeAnswer(el.number)(selectValue)
+                      }}
+                      name={el.title.replace(' ', '_')}
+                    >
+                      {el.variants.map((option, index) => (
+                        <option key={index}>{option.text}</option>
+                      ))}
+                    </select>
+                  ) : (
+                    <Lists
+                      variants={el.variants}
+                      onChange={changeAnswer(el.number)}
+                      name={el.title.replace(' ', '_')}
+                      type={el.type}
+                    />
+                  )}
                 </li>
               )
-            return <li>Unknown question type</li>
+            return <li className={styles.question}>Unknown question type</li>
           })}
         </ul>
-        {submitLoading ? <p>Uploading...</p> : <input type="submit" />}
+        {submitLoading ? (
+          <p>Uploading...</p>
+        ) : (
+          <input className={styles.button} type="submit" />
+        )}
       </form>
       {submitError && <p>{submitError.message}</p>}
       {submitData?.formSubmit.success && <p>Successfully uploaded</p>}

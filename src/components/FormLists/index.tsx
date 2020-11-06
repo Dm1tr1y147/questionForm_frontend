@@ -1,5 +1,7 @@
 import React from 'react'
 
+import styles from './main.module.css'
+
 interface IListsProps {
   variants: { text: string }[]
   name: string
@@ -25,6 +27,7 @@ const Lists: React.FC<IListsProps> = ({ variants, name, type, onChange }) => {
             type={inputType}
             name={name}
             value={el.text}
+            className={styles.selector}
           />
           {el.text}
         </label>

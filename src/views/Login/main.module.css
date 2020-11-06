@@ -50,13 +50,15 @@
 
 .input {
   border-bottom: 0.15rem var(--containerColor) solid !important;
-  transition: border-bottom 0.1s;
+  transition: border 0.1s;
 }
 .input:focus {
   border-bottom-width: 0rem !important;
+  border-top: 0.15rem var(--containerColor) solid !important;
 }
 
 .button {
+  cursor: pointer;
   background-color: var(--accentColor);
   color: var(--onAccentFontColor);
   box-shadow: 0 1px 6px 0 var(--accentShadowColor);

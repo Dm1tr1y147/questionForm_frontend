@@ -64,6 +64,24 @@
   width: 100%;
 }
 
+.button {
+  height: 2.3rem;
+  border-radius: 100vh;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0 0.7rem;
+  cursor: pointer;
+  width: 100%;
+  background-color: var(--accentColor);
+  color: var(--onAccentFontColor);
+  box-shadow: 0 1px 6px 0 var(--accentShadowColor);
+}
+
+.button:active {
+  box-shadow: none;
+}
+
 @media (orientation: portrait) {
   .container {
     grid-template-columns: auto;
