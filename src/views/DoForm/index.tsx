@@ -41,7 +41,7 @@ const DoForm: React.FC = () => {
         </p>
       </header>
       <main className={styles.main}>
-        <div className={styles.mainTop}></div>
+        <div className={styles.mainTop} />
         {form.submissions ? (
           <>
             <h1 className={styles.mainHeader}>Submissions</h1>

@@ -14,7 +14,7 @@ const Lists: React.FC<IListsProps> = ({ variants, name, type, onChange }) => {
     (type === 'CHECK' && 'check') || (type === 'CHOOSE' && 'radio') || undefined
 
   return (
-    <div>
+    <div className={styles.variantsList}>
       {variants.map((el, index) => (
         <label key={index}>
           <input

@@ -28,9 +28,6 @@
 }
 
 .select {
-  /* -webkit-appearance: none; */
-  /* -moz-appearance: none; */
-  /* appearance: none; */
   padding: 0.5rem;
   background: var(--accentColor);
   border-radius: 20px;

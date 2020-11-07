@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
 import React, { FormEvent } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 import { REGISTER } from '../../apollo'
 import { MutationRegisterArgs, ServerAnswer } from '../../apollo/typeDefs.gen'
@@ -40,7 +40,9 @@ const Register: React.FC = () => {
           alt='Questionform says: "Is mailbox a password?"'
         />
         <form className={styles.form} onSubmit={handleSubmit}>
-          <h1 className={styles.header}>Register</h1>
+          <h1 className={styles.header}>
+            Register / <Link to="/login">Log In</Link>
+          </h1>
           <input
             required
             className={styles.input}

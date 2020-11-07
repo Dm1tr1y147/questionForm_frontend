@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { generateFromString } from 'generate-avatar'
-import { Redirect, useHistory } from 'react-router-dom'
+import { Redirect, useHistory, Link } from 'react-router-dom'
 
 import Card from '../../components/Card'
 import { USER } from '../../apollo'
@@ -55,6 +55,9 @@ const Home: React.FC = () => {
               <Card title={form.title} id={form.id} />
             </li>
           ))}
+          <Link className={styles.createNew} to="/create">
+            <span>Create new</span> <h3>+</h3>
+          </Link>
         </ul>
       </div>
 

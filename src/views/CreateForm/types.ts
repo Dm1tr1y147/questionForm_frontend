@@ -28,6 +28,8 @@ export type HandleFormTitleChangeFT = (e: ChangeEvent<HTMLInputElement>) => void
 
 export type CreateQuestionFT<T extends string> = (type: T) => void
 
+export type RemoveQuestionFT = (number: number) => void
+
 export type HandleQuestionTitleChangeFT = (
   questionNumber: number,
   e: ChangeEvent<HTMLInputElement>
@@ -54,6 +56,7 @@ export type UseFormCreatorHookTurpleT<T extends string> = [
   {
     handleFormTitleChange: HandleFormTitleChangeFT
     addQuestion: CreateQuestionFT<T>
+    removeQuestion: RemoveQuestionFT
     handleQuestionTitleChange: HandleQuestionTitleChangeFT
     handleAnswerVariantChange: HandleAnswerVariantChangeFT
     addVariant: AddVariantFT

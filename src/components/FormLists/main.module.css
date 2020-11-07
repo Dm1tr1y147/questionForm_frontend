@@ -1,3 +1,14 @@
 .selector {
   margin-right: 0.5rem;
 }
+
+.variantsList {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (orientation: portrait) {
+  .variantsList {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,150 @@
+.container {
+  height: calc(100vh - 4rem);
+}
+
+.container form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageHeader {
+  display: flex;
+  gap: 1rem;
+  padding: 2.3rem;
+}
+
+.pageTitle {
+  margin-top: -0.3rem;
+}
+
+.textInput {
+  height: 2.3rem;
+  border-radius: 100vh;
+  border: none;
+  display: inline;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0 0.7rem;
+  border-bottom: 0.15rem var(--containerColor) solid;
+  transition: border 0.1s;
+}
+
+.textInput:focus {
+  border-bottom-width: 0rem;
+  border-top: 0.15rem var(--containerColor) solid;
+}
+
+.mainFormContainer {
+  margin-top: 2.3rem;
+  padding: 2.3rem;
+  padding-top: 0;
+  flex-grow: 1;
+  position: relative;
+  background: #ffffff;
+}
+
+.mainFormTop {
+  top: -2.3rem;
+  left: 0rem;
+  position: absolute;
+  height: 2.3rem;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: #ffffff;
+}
+
+.mainForm {
+  border: none;
+}
+
+.fieldsetTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding-bottom: 2rem;
+}
+
+.questionCreatorLI {
+  list-style: none;
+  display: inline;
+  padding-right: 0.5rem;
+}
+
+.button {
+  height: 2.3rem;
+  border-radius: 100vh;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0 0.7rem;
+  cursor: pointer;
+  background-color: var(--accentColor);
+  color: var(--onAccentFontColor);
+  box-shadow: 0 1px 6px 0 var(--accentShadowColor);
+}
+
+.button:active {
+  box-shadow: none;
+}
+
+.questionToCreateLI {
+  margin-bottom: 2.3rem;
+  list-style: none;
+  border: 0.1rem var(--containerColor) solid;
+  border-radius: 20px;
+  padding: 2.3rem;
+}
+
+.questionHeader {
+  display: grid;
+  grid-template-columns: auto 1fr 2.3rem;
+  gap: 0.5rem;
+}
+
+.questionTitle {
+  line-height: 2.3rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.variantsHeader {
+  margin: 1rem 0;
+}
+
+.variantText {
+  margin: 0.5rem;
+}
+
+.addVariant {
+  width: 2.3rem;
+  margin: auto;
+  display: block;
+  line-height: 2.3rem;
+}
+
+.submitContainer {
+  padding: 2.3rem;
+  background-color: #ffffff;
+}
+
+.submitButton {
+  width: 100%;
+}
+
+@media (orientation: portrait) {
+  .pageHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pageTitle {
+    margin-top: 0;
+  }
+
+  .questionHeader {
+    grid-template-columns: 1fr;
+  }
+}

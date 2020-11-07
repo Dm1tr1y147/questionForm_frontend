@@ -14,6 +14,7 @@ import {
   HandleQuestionTitleChangeFT,
   HandleAnswerVariantChangeFT,
   AddVariantFT,
+  RemoveQuestionFT,
 } from './types'
 
 const initialState = { title: '', questions: [] }
@@ -49,6 +50,13 @@ export const useFormCreator = <T extends string>(
     setState(({ title, questions }) => ({
       title,
       questions: questions.concat({ title: '', type, variants: [''] }),
+    }))
+  }
+
+  const removeQuestion: RemoveQuestionFT = (number) => {
+    setState(({ title, questions }) => ({
+      title,
+      questions: questions.filter((_, index) => index !== number),
     }))
   }
 
@@ -107,6 +115,7 @@ export const useFormCreator = <T extends string>(
     {
       handleFormTitleChange,
       addQuestion: createQuestion,
+      removeQuestion,
       handleQuestionTitleChange,
       handleAnswerVariantChange,
       addVariant,

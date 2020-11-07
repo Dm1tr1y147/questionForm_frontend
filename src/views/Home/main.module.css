@@ -30,6 +30,31 @@
   overflow-y: auto;
 }
 
+.createNew:hover {
+  border-color: var(--containerColor);
+  color: var(--containerColor);
+}
+
+.createNew {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem var(--accentColor) solid;
+  text-decoration: none;
+  color: var(--accentColor);
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.createNew span {
+  font-weight: bold;
+  line-height: 1.17em;
+}
+
+.createNew h3 {
+  line-height: 1.17em;
+}
+
 .rightPad {
   display: flex;
   flex-direction: column;

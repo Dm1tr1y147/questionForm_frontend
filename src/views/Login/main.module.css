@@ -48,6 +48,10 @@
   text-align: center;
 }
 
+.header a {
+  color: var(--accentColor);
+}
+
 .input {
   border-bottom: 0.15rem var(--containerColor) solid !important;
   transition: border 0.1s;

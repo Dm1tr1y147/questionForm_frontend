@@ -5,6 +5,7 @@ import { LOGIN } from '../../apollo'
 import { MutationLoginArgs, ServerAnswer } from '../../apollo/typeDefs.gen'
 import styles from './main.module.css'
 import meme from './meme.png'
+import { Link } from 'react-router-dom'
 
 interface ILoginMutation {
   login: ServerAnswer
@@ -47,7 +48,9 @@ const Login: React.FC = () => {
             </div>
           ) : (
             <>
-              <h1 className={styles.header}>Login</h1>
+              <h1 className={styles.header}>
+                Log In / <Link to="/register">Register</Link>
+              </h1>
               <input
                 required
                 className={styles.input}

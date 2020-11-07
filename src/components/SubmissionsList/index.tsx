@@ -21,7 +21,7 @@ const SubmissionList: React.FC<ISubmissionListProps> = ({
   questions,
 }) => {
   return submissions.length > 0 ? (
-    <ul>
+    <ul className={styles.container}>
       {submissions.map((submission, submissionIndex) => (
         <li className={styles.listItem} key={submissionIndex}>
           <h2 className={styles.itemHeader}>
