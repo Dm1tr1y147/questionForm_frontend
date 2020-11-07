@@ -24,7 +24,6 @@ export const useForm = () => {
   const setInitialState = useCallback(
     (questions: QuestionT[]) => {
       const state = getInitialState(questions)
-      console.log('Setting state')
       setAnswers(state)
     },
     [setAnswers]
