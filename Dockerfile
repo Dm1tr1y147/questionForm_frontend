@@ -1,6 +1,7 @@
-FROM node:14.4.0-alpine3.10
-USER root
+FROM node:alpine
 WORKDIR /frontend
-COPY . /frontend
+COPY package.json /frontend/package.json
 RUN yarn
+COPY . /frontend
+RUN yarn codegen
 RUN yarn build
